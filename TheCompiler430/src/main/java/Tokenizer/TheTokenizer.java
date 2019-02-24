@@ -48,6 +48,8 @@ public class TheTokenizer {
     // begin instance variables
     private char[] input;
     private int inputPos; // position in the input
+    private stringToken newString = null;
+    private QuoteToken newQuote = new QuoteToken();
     // end instance variables
 
         
@@ -130,6 +132,18 @@ public class TheTokenizer {
             final String key = entry.getKey();
             if (prefixCharsEqual(key)) {
                 inputPos += key.length();
+                
+                if(entry.getValue() instanceof QuoteToken){
+                    int k = inputPos;
+                    String theString = "";
+                    while(input[k]!='\"'){
+                    theString += input[k];                
+                    k++;
+                    }
+                
+                inputPos = k+1;
+                newString = new stringToken(theString);
+                }
                 return entry.getValue();
             }
         }
@@ -173,6 +187,12 @@ public class TheTokenizer {
             
         while ((current = tokenizeSingle()) != null) {
             list.add(current);
+            
+            if(newString !=null){
+                list.add(newString);
+                list.add(newQuote);
+                newString = null;
+            }
         }
 
         return list;

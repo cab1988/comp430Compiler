@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="15" failures="0" name="Tokenizer.TokenizerTest" time="0.108" errors="0" skipped="0">
+<testsuite tests="15" failures="0" name="Tokenizer.TokenizerTest" time="0.125" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_73\jre\bin"/>
@@ -63,19 +63,19 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableSingleLetter" time="0.09"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableMultiLetter" time="0.002"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeSingleChars" time="0.002"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntermixed" time="0.001"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testNewSingleCharacters" time="0.001"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIfExpression" time="0.003"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableSingleLetter" time="0.094"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableMultiLetter" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeSingleChars" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntermixed" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testNewSingleCharacters" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIfExpression" time="0.015"/>
   <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIf" time="0"/>
   <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntegerTrailingWhitespace" time="0"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeInteger" time="0.006"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeInteger" time="0"/>
   <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeElse" time="0"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableStartsWithIf" time="0.001"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntegerLeadingAndTrailingWhitespace" time="0.001"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeSingleDigitInteger" time="0.001"/>
-  <testcase classname="Tokenizer.TokenizerTest" name="testErrors" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeVariableStartsWithIf" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntegerLeadingAndTrailingWhitespace" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeSingleDigitInteger" time="0"/>
+  <testcase classname="Tokenizer.TokenizerTest" name="testErrors" time="0.016"/>
   <testcase classname="Tokenizer.TokenizerTest" name="testTokenizeIntegerLeadingWhitespace" time="0"/>
 </testsuite>

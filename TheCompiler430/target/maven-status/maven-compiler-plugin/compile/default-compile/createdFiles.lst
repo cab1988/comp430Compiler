@@ -10,6 +10,7 @@ Tokenizer\CommaToken.class
 Tokenizer\LeftParenToken.class
 Tokenizer\MultToken.class
 Tokenizer\NotToken.class
+Tokenizer\stringToken.class
 Tokenizer\TheTokenizer$1.class
 Tokenizer\MinusToken.class
 Tokenizer\DivToken.class

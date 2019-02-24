@@ -3,6 +3,7 @@ comp430Compiler,Tokenizer,LeftParenToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,MultToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,GreaterToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,RightParenToken,2,8,0,0,1,3,1,3,1,3
+comp430Compiler,Tokenizer,stringToken,9,0,0,0,4,0,2,0,2,0
 comp430Compiler,Tokenizer,IfToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,TheTokenizer.new HashMap() {...},0,178,0,0,0,27,0,1,0,1
 comp430Compiler,Tokenizer,PoundToken,2,8,0,0,1,3,1,3,1,3
@@ -10,7 +11,7 @@ comp430Compiler,Tokenizer,EscapeToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,PeriodToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,DivToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,ElseToken,2,8,0,0,1,3,1,3,1,3
-comp430Compiler,Tokenizer,QuoteToken,2,8,0,0,1,3,1,3,1,3
+comp430Compiler,Tokenizer,QuoteToken,7,3,0,0,3,1,3,1,3,1
 comp430Compiler,Tokenizer,EqualsToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,LeftCurlyToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,SingleQToken,2,8,0,0,1,3,1,3,1,3
@@ -26,6 +27,6 @@ comp430Compiler,Tokenizer,ColonToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,RightCurlyToken,2,8,0,0,1,3,1,3,1,3
 comp430Compiler,Tokenizer,TokenizerException,0,4,0,0,0,2,0,1,0,1
 comp430Compiler,Tokenizer,MinusToken,2,8,0,0,1,3,1,3,1,3
-comp430Compiler,Tokenizer,TheTokenizer,0,315,0,40,0,68,0,30,0,10
+comp430Compiler,Tokenizer,TheTokenizer,50,329,4,42,10,72,3,30,0,10
 comp430Compiler,Tokenizer,NumberToken,4,22,2,2,1,5,3,3,1,3
 comp430Compiler,Tokenizer,PlusToken,2,8,0,0,1,3,1,3,1,3

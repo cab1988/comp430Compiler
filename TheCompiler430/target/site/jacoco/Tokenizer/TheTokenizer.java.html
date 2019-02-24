@@ -48,119 +48,133 @@ public class TheTokenizer {
     // begin instance variables
     private char[] input;
     private int inputPos; // position in the input
+<span class="fc" id="L51">    private stringToken newString = null;</span>
+<span class="fc" id="L52">    private QuoteToken newQuote = new QuoteToken();</span>
     // end instance variables
 
         
-<span class="fc" id="L54">    TheTokenizer(final char[] input) {</span>
-<span class="fc" id="L55">        this.input = input;</span>
-<span class="fc" id="L56">        inputPos = 0;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L56">    TheTokenizer(final char[] input) {</span>
+<span class="fc" id="L57">        this.input = input;</span>
+<span class="fc" id="L58">        inputPos = 0;</span>
+<span class="fc" id="L59">    }</span>
 
     public static boolean isTokenString(final String input) {
-<span class="fc" id="L60">        return TOKEN_MAPPING.containsKey(input);</span>
+<span class="fc" id="L62">        return TOKEN_MAPPING.containsKey(input);</span>
     }
     
     // assumes there is at least one character left
     // returns null if it couldn't parse a number
     private NumberToken tryTokenizeNumber() {
-<span class="fc" id="L66">        final int initialInputPos = inputPos;</span>
-<span class="fc" id="L67">        String digits = &quot;&quot;;</span>
+<span class="fc" id="L68">        final int initialInputPos = inputPos;</span>
+<span class="fc" id="L69">        String digits = &quot;&quot;;</span>
 
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        while (inputPos &lt; input.length &amp;&amp;</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">               Character.isDigit(input[inputPos])) {</span>
-<span class="fc" id="L71">            digits += input[inputPos];</span>
-<span class="fc" id="L72">            inputPos++;</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        while (inputPos &lt; input.length &amp;&amp;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">               Character.isDigit(input[inputPos])) {</span>
+<span class="fc" id="L73">            digits += input[inputPos];</span>
+<span class="fc" id="L74">            inputPos++;</span>
         }
 
-<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (digits.length() &gt; 0) {</span>
-<span class="fc" id="L76">            return new NumberToken(Integer.parseInt(digits));</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (digits.length() &gt; 0) {</span>
+<span class="fc" id="L78">            return new NumberToken(Integer.parseInt(digits));</span>
         } else {
             // reset position
-<span class="fc" id="L79">            inputPos = initialInputPos;</span>
-<span class="fc" id="L80">            return null;</span>
+<span class="fc" id="L81">            inputPos = initialInputPos;</span>
+<span class="fc" id="L82">            return null;</span>
         }
     }
 
     // assumes there is at least one character left
     // returns null if it couldn't parse a variable
     private VariableToken tryTokenizeVariable() {
-<span class="fc" id="L87">        final int initialInputPos = inputPos;</span>
-<span class="fc" id="L88">        String name = &quot;&quot;;</span>
+<span class="fc" id="L89">        final int initialInputPos = inputPos;</span>
+<span class="fc" id="L90">        String name = &quot;&quot;;</span>
 
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        if (Character.isLetter(input[inputPos])) {</span>
-<span class="fc" id="L91">            name += input[inputPos];</span>
-<span class="fc" id="L92">            inputPos++;            </span>
-<span class="fc bfc" id="L93" title="All 2 branches covered.">            while (inputPos &lt; input.length &amp;&amp;</span>
-<span class="fc bfc" id="L94" title="All 2 branches covered.">                   Character.isLetterOrDigit(input[inputPos])) {</span>
-<span class="fc" id="L95">                name += input[inputPos];</span>
-<span class="fc" id="L96">                inputPos++;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (Character.isLetter(input[inputPos])) {</span>
+<span class="fc" id="L93">            name += input[inputPos];</span>
+<span class="fc" id="L94">            inputPos++;            </span>
+<span class="fc bfc" id="L95" title="All 2 branches covered.">            while (inputPos &lt; input.length &amp;&amp;</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">                   Character.isLetterOrDigit(input[inputPos])) {</span>
+<span class="fc" id="L97">                name += input[inputPos];</span>
+<span class="fc" id="L98">                inputPos++;</span>
             }
         } else {
             // reset position
-<span class="fc" id="L100">            inputPos = initialInputPos;</span>
-<span class="fc" id="L101">            return null;</span>
+<span class="fc" id="L102">            inputPos = initialInputPos;</span>
+<span class="fc" id="L103">            return null;</span>
         }
 
-<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (isTokenString(name)) {</span>
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (isTokenString(name)) {</span>
             // reset position
-<span class="fc" id="L106">            inputPos = initialInputPos;</span>
-<span class="fc" id="L107">            return null;</span>
+<span class="fc" id="L108">            inputPos = initialInputPos;</span>
+<span class="fc" id="L109">            return null;</span>
         } else {
-<span class="fc" id="L109">            return new VariableToken(name);</span>
+<span class="fc" id="L111">            return new VariableToken(name);</span>
         }
     }
 
     private boolean prefixCharsEqual(final String probe) {
-<span class="fc" id="L114">        int targetPos = inputPos;</span>
-<span class="fc" id="L115">        int probePos = 0;</span>
+<span class="fc" id="L116">        int targetPos = inputPos;</span>
+<span class="fc" id="L117">        int probePos = 0;</span>
 
-<span class="fc bfc" id="L117" title="All 2 branches covered.">        while (targetPos &lt; input.length &amp;&amp;</span>
-<span class="fc bfc" id="L118" title="All 2 branches covered.">               probePos &lt; probe.length() &amp;&amp;</span>
-<span class="fc bfc" id="L119" title="All 2 branches covered.">               probe.charAt(probePos) == input[targetPos]) {</span>
-<span class="fc" id="L120">            probePos++;</span>
-<span class="fc" id="L121">            targetPos++;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        while (targetPos &lt; input.length &amp;&amp;</span>
+<span class="fc bfc" id="L120" title="All 2 branches covered.">               probePos &lt; probe.length() &amp;&amp;</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">               probe.charAt(probePos) == input[targetPos]) {</span>
+<span class="fc" id="L122">            probePos++;</span>
+<span class="fc" id="L123">            targetPos++;</span>
         }
 
-<span class="fc bfc" id="L124" title="All 2 branches covered.">        return probePos == probe.length();</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        return probePos == probe.length();</span>
     }
             
     // returns null if it couldn't parse a token
     private Token tryTokenizeOther() {
-<span class="fc bfc" id="L129" title="All 2 branches covered.">        for (final Map.Entry&lt;String, Token&gt; entry : TOKEN_MAPPING.entrySet()) {</span>
-<span class="fc" id="L130">            final String key = entry.getKey();</span>
-<span class="fc bfc" id="L131" title="All 2 branches covered.">            if (prefixCharsEqual(key)) {</span>
-<span class="fc" id="L132">                inputPos += key.length();</span>
-<span class="fc" id="L133">                return entry.getValue();</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        for (final Map.Entry&lt;String, Token&gt; entry : TOKEN_MAPPING.entrySet()) {</span>
+<span class="fc" id="L132">            final String key = entry.getKey();</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">            if (prefixCharsEqual(key)) {</span>
+<span class="fc" id="L134">                inputPos += key.length();</span>
+                
+<span class="pc bpc" id="L136" title="1 of 2 branches missed.">                if(entry.getValue() instanceof QuoteToken){</span>
+<span class="nc" id="L137">                    int k = inputPos;</span>
+<span class="nc" id="L138">                    String theString = &quot;&quot;;</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">                    while(input[k]!='\&quot;'){</span>
+<span class="nc" id="L140">                    theString += input[k];                </span>
+<span class="nc" id="L141">                    k++;</span>
+                    }
+                
+<span class="nc" id="L144">                inputPos = k+1;</span>
+<span class="nc" id="L145">                newString = new stringToken(theString);</span>
+                }
+<span class="fc" id="L147">                return entry.getValue();</span>
             }
-<span class="fc" id="L135">        }</span>
-<span class="fc" id="L136">        return null;</span>
+<span class="fc" id="L149">        }</span>
+<span class="fc" id="L150">        return null;</span>
     }
     
     private void skipWhitespace() {
-<span class="fc bfc" id="L140" title="All 2 branches covered.">        while (inputPos &lt; input.length &amp;&amp;</span>
-<span class="fc bfc" id="L141" title="All 2 branches covered.">               Character.isWhitespace(input[inputPos])) {</span>
-<span class="fc" id="L142">            inputPos++;</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">        while (inputPos &lt; input.length &amp;&amp;</span>
+<span class="fc bfc" id="L155" title="All 2 branches covered.">               Character.isWhitespace(input[inputPos])) {</span>
+<span class="fc" id="L156">            inputPos++;</span>
         }
-<span class="fc" id="L144">    }</span>
+<span class="fc" id="L158">    }</span>
 
     // returns null if there are no more tokens
     public Token tokenizeSingle() throws TokenizerException {
-<span class="fc" id="L148">        VariableToken var = null;</span>
-<span class="fc" id="L149">        NumberToken num = null;</span>
-<span class="fc" id="L150">        Token otherToken = null;</span>
+<span class="fc" id="L162">        VariableToken var = null;</span>
+<span class="fc" id="L163">        NumberToken num = null;</span>
+<span class="fc" id="L164">        Token otherToken = null;</span>
 
-<span class="fc" id="L152">        skipWhitespace();</span>
+<span class="fc" id="L166">        skipWhitespace();</span>
 
-<span class="fc bfc" id="L154" title="All 2 branches covered.">        if (inputPos &gt;= input.length) {</span>
-<span class="fc" id="L155">            return null;</span>
-<span class="fc bfc" id="L156" title="All 2 branches covered.">        } else if ((var = tryTokenizeVariable()) != null) {</span>
-<span class="fc" id="L157">            return var;</span>
-<span class="fc bfc" id="L158" title="All 2 branches covered.">        } else if ((num = tryTokenizeNumber()) != null) {</span>
-<span class="fc" id="L159">            return num;</span>
-<span class="fc bfc" id="L160" title="All 2 branches covered.">        } else if ((otherToken = tryTokenizeOther()) != null) {</span>
-<span class="fc" id="L161">            return otherToken;</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        if (inputPos &gt;= input.length) {</span>
+<span class="fc" id="L169">            return null;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        } else if ((var = tryTokenizeVariable()) != null) {</span>
+<span class="fc" id="L171">            return var;</span>
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        } else if ((num = tryTokenizeNumber()) != null) {</span>
+<span class="fc" id="L173">            return num;</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        } else if ((otherToken = tryTokenizeOther()) != null) {</span>
+<span class="fc" id="L175">            return otherToken;</span>
         } else {
-<span class="fc" id="L163">            throw new TokenizerException(&quot;Invalid character &quot; +</span>
+<span class="fc" id="L177">            throw new TokenizerException(&quot;Invalid character &quot; +</span>
                                          input[inputPos] +
                                          &quot; at position &quot; +
                                          inputPos);
@@ -168,14 +182,20 @@ public class TheTokenizer {
     }
     
     public List&lt;Token&gt; tokenize() throws TokenizerException {
-<span class="fc" id="L171">        List&lt;Token&gt; list = new ArrayList&lt;Token&gt;();</span>
-<span class="fc" id="L172">        Token current = null;</span>
+<span class="fc" id="L185">        List&lt;Token&gt; list = new ArrayList&lt;Token&gt;();</span>
+<span class="fc" id="L186">        Token current = null;</span>
             
-<span class="fc bfc" id="L174" title="All 2 branches covered.">        while ((current = tokenizeSingle()) != null) {</span>
-<span class="fc" id="L175">            list.add(current);</span>
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        while ((current = tokenizeSingle()) != null) {</span>
+<span class="fc" id="L189">            list.add(current);</span>
+            
+<span class="pc bpc" id="L191" title="1 of 2 branches missed.">            if(newString !=null){</span>
+<span class="nc" id="L192">                list.add(newString);</span>
+<span class="nc" id="L193">                list.add(newQuote);</span>
+<span class="nc" id="L194">                newString = null;</span>
+            }
         }
 
-<span class="fc" id="L178">        return list;</span>
+<span class="fc" id="L198">        return list;</span>
     }
 }
 

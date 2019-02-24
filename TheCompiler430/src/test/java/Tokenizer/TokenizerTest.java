@@ -106,11 +106,11 @@ public class TokenizerTest {
     
     @Test
     public void testNewSingleCharacters() {
-        assertTokenizes(",%!\".<>[]=:;#'\\",
+        assertTokenizes(",%!.<>[]=:;#'\\",
                         new Token[]{ new CommaToken(),
                                      new PercentToken(),
                                      new NotToken(),
-                                     new QuoteToken(),
+                                     //new QuoteToken(),
                                      new PeriodToken(),
                                      new LessToken(),
                                      new GreaterToken(),
